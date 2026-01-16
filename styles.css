@@ -1,0 +1,435 @@
+/* styles.css - Evander Head of IT Role Response */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --accent-color: #1e3a8a;
+    --border-color: #e5e7eb;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --accent-color: #3b82f6;
+    --border-color: #374151;
+}
+
+body {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+}
+
+[data-theme="dark"] .gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background: #1e3a8a;
+    color: white;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 40;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #0f172a;
+    transform: translateY(-4px);
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.timeline-dot {
+    position: relative;
+}
+
+.timeline-dot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1e3a8a;
+    border: 3px solid var(--bg-primary);
+    box-shadow: 0 0 0 4px #dbeafe;
+}
+
+@media (max-width: 768px) {
+    .timeline-dot::before {
+        display: none;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-category {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.skill-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.skill-category.active .skill-details {
+    max-height: 2000px;
+}
+
+.skill-category.active {
+    background: var(--bg-secondary);
+}
+
+.tech-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.tech-logo:hover {
+    filter: grayscale(0%);
+}
+
+[data-theme="dark"] .tech-logo {
+    filter: grayscale(100%) brightness(0) invert(1);
+}
+
+[data-theme="dark"] .tech-logo:hover {
+    filter: grayscale(0%) brightness(1) invert(0);
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    transition: width 1.5s ease;
+    border-radius: 9999px;
+}
+
+.roadmap-item {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.roadmap-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, #1e3a8a, transparent);
+}
+
+.roadmap-dot {
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    background: #1e3a8a;
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #cbd5e1;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.toggle-switch.active {
+    background: #1e3a8a;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch.active .toggle-slider {
+    transform: translateX(30px);
+}
+
+/* Expandable sections */
+.expandable-section {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.expandable-section:hover {
+    background: var(--bg-secondary);
+}
+
+.expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.expandable-section.active .expandable-content {
+    max-height: 3000px;
+}
+
+.expand-icon {
+    transition: transform 0.3s ease;
+}
+
+.expandable-section.active .expand-icon {
+    transform: rotate(180deg);
+}
+
+/* Highlight boxes for key information */
+.highlight-box {
+    border-left: 4px solid #1e3a8a;
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+[data-theme="dark"] .highlight-box {
+    border-left-color: #3b82f6;
+}
+
+/* Certification badges */
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0.25rem;
+    transition: transform 0.2s ease;
+}
+
+.cert-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Success metrics */
+.metric-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    border-color: #1e3a8a;
+    transform: translateY(-2px);
+}
+
+.metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .metric-value {
+    color: #3b82f6;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Key achievements list styling */
+.achievement-list {
+    list-style: none;
+    padding: 0;
+}
+
+.achievement-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.achievement-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #1e3a8a;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+[data-theme="dark"] .achievement-list li::before {
+    background: #3b82f6;
+}
+
+/* Quote/testimonial styling */
+.quote-box {
+    border-left: 4px solid #1e3a8a;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: 0.5rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+}
+
+[data-theme="dark"] .quote-box {
+    border-left-color: #3b82f6;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section dividers */
+.section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: 3rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .metric-value {
+        font-size: 2rem;
+    }
+    
+    .cert-badge {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .gradient-bg {
+        background: white;
+        color: black;
+    }
+    
+    nav, .back-to-top {
+        display: none;
+    }
+    
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* Accessibility improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus, .nav-link:focus {
+    outline: 2px solid #1e3a8a;
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] a:focus,
+[data-theme="dark"] button:focus,
+[data-theme="dark"] .nav-link:focus {
+    outline-color: #3b82f6;
+}
